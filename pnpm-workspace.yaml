@@ -3,3 +3,8 @@ packages:
   - "packages/**"
   # exclude packages that are inside test directories
   - "!**/test/**"
+allowBuilds:
+  core-js: true
+  ejs: true
+  esbuild: true
+  fsevents: true

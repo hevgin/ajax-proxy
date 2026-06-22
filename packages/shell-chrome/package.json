@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "rm -rf build && webpack --config webpack.config.js"
+    "build": "rm -rf build && webpack --config webpack.config.js",
+    "watch": "webpack --config webpack.config.js --watch"
   },
   "keywords": [],
   "author": {
