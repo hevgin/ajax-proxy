@@ -5,7 +5,8 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "watch": "vue-cli-service build --watch --no-clean --mode production"
+    "watch": "vue-cli-service build --watch --no-clean --mode production",
+    "watch:ext": "vue-cli-service build --watch --no-clean --mode production --dest ../shell-chrome/build/panels"
   },
   "dependencies": {
     "@alrale/common-lib": "^1.0.49",

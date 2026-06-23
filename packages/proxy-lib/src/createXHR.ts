@@ -2,6 +2,15 @@ import { maybeMatching, notice } from "./common";
 import { execSetup, getCtx } from "./overrideFunc";
 import { RefGlobalState } from "./types";
 
+// 安全解析 JSON，解析失败则返回原字符串
+function safeJsonParse(str: string): any {
+    try {
+        return JSON.parse(str);
+    } catch {
+        return str;
+    }
+}
+
 // 共享状态
 let globalState: RefGlobalState
 // XMLHttpRequest 副本
@@ -80,14 +89,14 @@ class CustomXHR extends XMLHttpRequest {
                     if (payload.override) {
                         const _override = typeof payload.override === "string" ? payload.override : JSON.stringify(payload.override);
                         this.responseText = _override;
-                        this.response = _override;
+                        this.response = this.responseType === 'json' ? safeJsonParse(_override) : _override;
                     }
                     this.status = +payload.status!
                     this.statusText = payload.status + ""
                 } else {
                     // 修改响应
                     this.responseText = override;
-                    this.response = override;
+                    this.response = this.responseType === 'json' ? safeJsonParse(override) : override;
                     // 修改状态码
                     this.status = +status_code
                     this.statusText = status_code
